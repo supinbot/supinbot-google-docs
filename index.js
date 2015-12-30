@@ -78,15 +78,31 @@ module.exports = function(SupinBot) {
 			}
 
 			if (res.files.length === 0) {
-				SupinBot.postMessage(channel.id, 'No notes found.');
+				SupinBot.postMessage(channel.id, null, {
+					attachments: [
+						{
+							title: 'No notes found.',
+							color: '#EA4335'
+						}
+					]
+				});
 			} else {
-				var message = 'Google Drive Notes:';
+				var message = '';
 
 				res.files.forEach(function(file) {
-					message = message + '\n*' + file.name + '* - ' + file.webViewLink;
+					message = message + '\n<' + file.webViewLink + '|' + file.name + '>';
 				});
 
-				SupinBot.postMessage(channel.id, message);
+				SupinBot.postMessage(channel.id, null, {
+					attachments: [
+						{
+							title: 'Google Drive Notes',
+							title_link: 'https://drive.google.com/open?id=' + CONFIG.FOLDER,
+							text: message,
+							color: '#4688F4'
+						}
+					]
+				});
 			}
 		});
 	})
@@ -125,7 +141,15 @@ module.exports = function(SupinBot) {
 				}
 
 				SupinBot.log.info(args[0] + ' Created with ID: ' + file.id);
-				SupinBot.postMessage(channel.id, '*' + args[0] + '* Created!\n' + file.webViewLink);
+				SupinBot.postMessage(channel.id, null, {
+					attachments: [
+						{
+							title: args[0] + ' Created',
+							text: '<' + file.webViewLink + '|Click here to view it>.',
+							color: '#34A853'
+						}
+					]
+				});
 			});
 		});
 	})
