@@ -1,6 +1,6 @@
 {
   "name": "supinbot-google-docs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A module that allows supinbot to creategoogle docs to share notes with everyone.",
   "main": "index.js",
   "repository": {
