@@ -20,21 +20,6 @@ module.exports = function(SupinBot) {
 		SupinBot.postMessage(config.get('channel'), 'New token requested, enter the OAuth2 code with the !redeemdocscode <OAuth2 Code> command.\n' + url);
 	}
 
-	function saveToken(token) {
-		config.set('token', token.refresh_token);
-		getOAuth();
-
-		var configDir = path.dirname(path.resolve(process.cwd(), SupinBot.config.get('config_file')));
-		fs.writeFile(path.resolve(configDir, 'google-docs.json'), JSON.stringify(config.getProperties(), null, '\t'), function(err) {
-			if (err) {
-				SupinBot.log.error('[google-docs] Failed to save the refresh token.', err);
-				return;
-			}
-
-			SupinBot.log.info('[google-docs] Refresh token saved.');
-		});
-	}
-
 	function getOAuth() {
 		OAUTH = new OAuth2(config.get('client_id'), config.get('client_secret'), config.get('redirect_uri'));
 
@@ -56,8 +41,8 @@ module.exports = function(SupinBot) {
 				return;
 			}
 
-			saveToken(token);
-			SupinBot.postMessage(config.get('channel'), 'Token successfully redeemed.');
+			config.set('token', token.refresh_token);
+			SupinBot.postMessage(config.get('channel'), 'Token successfully redeemed.\nRemember to add the following entry to .env:\nSUPINBOT_GOOGLE_REFRESH_TOKEN=' + token.refresh_token);
 		});
 	})
 	.setDescription('Uses the given code to get a Google Drive access token.')
