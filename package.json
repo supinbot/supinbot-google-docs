@@ -1,18 +1,18 @@
 {
   "name": "supinbot-google-docs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A module that allows supinbot to creategoogle docs to share notes with everyone.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/Starfox64/supinbot-google-docs.git"
+    "url": "git+https://github.com/supinbot/supinbot-google-docs.git"
   },
   "author": "Starfox64 <louisdijon21@yahoo.fr>",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/Starfox64/supinbot-google-docs/issues"
+    "url": "https://github.com/supinbot/supinbot-google-docs/issues"
   },
-  "homepage": "https://gitlab.com/Starfox64/supinbot-google-docs#README",
+  "homepage": "https://github.com/supinbot/supinbot-google-docs#README",
   "dependencies": {
     "googleapis": "^2.1.7"
   }
